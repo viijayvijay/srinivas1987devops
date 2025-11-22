@@ -1,0 +1,156 @@
+Program: 
+// Character count 
+#include<stdio.h> 
+#include<string.h> 
+char input[10][20]; 
+int get_input(); 
+void make_frames(int); 
+int count_chars(int s); 
+void main() 
+{ 
+} 
+int no_of_words=get_input(); 
+make_frames(no_of_words); 
+int get_input() 
+{ 
+int answer; 
+int i=0; 
+do{ 
+printf("\nEnter the Word:"); 
+scanf("%s",input[i]); 
+fflush(stdin); 
+printf("\nDo you want to continue: (yes: 1 or no: 0)?:"); 
+scanf("%d",&answer); 
+i++; 
+} 
+while(answer!=0); 
+return i; 
+} 
+void make_frames(int num_words){ 
+int i=0; 
+printf("\nThe Transmitted Data is:\n\t"); 
+for(;i<num_words;i++) 
+printf("%d%s",(count_chars(i)+1),input[i]); 
+printf("\n\n"); 
+} 
+int count_chars(int index) 
+{ 
+} 
+int i=0; 
+while(input[index][i]!='\0') 
+i++; 
+return i; 
+Output: 
+Enter the Word: cat 
+Do you want to continue: (y: 1/n: 0)?:1 
+Enter the Word: dog 
+Do you want to continue: (y: 1/n: 0)?:1 
+Enter the Word: apple 
+Do you want to continue: (y: 1/n: 0)?:0 
+The Transmitted Data is: 
+4cat4dog6apple
+
+
+//Program Bit Stuffing 
+#include<stdio.h> 
+#include<conio.h> 
+#include<string.h> 
+void main() { 
+int i, j,count=0,nl; 
+char str[100]; 
+printf("enter the bit string: "); 
+gets(str); 
+for (i=0;i<strlen(str);i++) { 
+count=0; 
+//the following code search the six ones in given string 
+for (j=i;j<=(i+5);j++) { 
+if(str[j]=='1') { 
+} 
+} 
+count++; 
+//if there is six ones then following code execute to bit stuffing after five ones 
+if(count==6) { 
+nl=strlen(str)+2; 
+for (;nl>=(i+5);nl--) 
+{ 
+str[nl]=str[nl-1]; 
+} 
+str[i+5]='0'; 
+} 
+} 
+i=i+7; 
+puts(str); 
+getch(); 
+}
+
+
+//BYTE STUFFING
+#include<stdio.h> 
+#include<string.h> 
+#include<conio.h> 
+void main () 
+{ 
+int j,l,m,c,k; 
+char a[50],b[50]; 
+printf("Enter the string:"); 
+scanf("%s",a); 
+strcpy(b,"DLESTX"); 
+m=strlen(a); 
+for(j=0;j<m;) 
+{ 
+if(a[j]=='d') 
+{ 
+if(a[j+1]=='l') 
+{ 
+if(a[j+2]=='e') 
+{ 
+c=j+2; 
+for(l=0;l<3;l++) 
+{ 
+for(k=m;k>c;k--) 
+{ 
+a[k]=a[k-1]; 
+} 
+m++; 
+a[m]='\0'; 
+c+=1; 
+} 
+a[j+3]='d'; 
+a[j+4]='l'; 
+a[j+5]='e'; 
+a[m]='\0'; 
+j+=5; 
+} 
+} 
+} 
+j++; 
+} 
+strcat(b,a); 
+strcat(b,"DLEETX"); 
+printf("\n%s",b); 
+printf("\nReceiver side:"); 
+m=strlen(a); 
+for(j=0;j<m;) 
+{ 
+if(a[j]=='d') 
+{ 
+if(a[j+1]=='l') 
+{ 
+if(a[j+2]=='e') 
+{ 
+c=j; 
+for(l=0;l<3;l++) 
+{ 
+for(k=c;k<m;k++) 
+a[k]=a[k+1]; 
+} 
+c++; 
+} 
+j=c; 
+} 
+} 
+j++; 
+} 
+printf("\n%s",a); 
+getch(); 
+}
